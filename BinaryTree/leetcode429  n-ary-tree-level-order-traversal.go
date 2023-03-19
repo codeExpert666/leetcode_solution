@@ -6,6 +6,9 @@ import "container/list"
 type Node struct {
 	Val      int
 	Children []*Node
+	Left     *Node
+	Right    *Node
+	Next     *Node
 }
 
 /**
