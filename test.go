@@ -12,39 +12,57 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-/**
- * 方法二：层序遍历模板，主要目标是找到第一个叶子结点
- */
-func minDepth2(root *TreeNode) int {
-	var res int
-
-	if root == nil {
-		return res
+func isSymmetric(root *TreeNode) bool {
+	if root == nil { // 空树特殊处理
+		return true
+	}
+	if root.Left == nil && root.Right != nil {
+		return false
+	}
+	if root.Left != nil && root.Right == nil {
+		return false
 	}
 
-	queue := list.New()
-	queue.PushBack(root)
+	leftStack := list.New()
+	rightStack := list.New()
+	leftPtr, rightPtr := root.Left, root.Right
 
-	for queue.Len() > 0 {
-		res++
-		l := queue.Len()
-		for i := 0; i < l; i++ {
-			cur := queue.Remove(queue.Front()).(*TreeNode)
-			if cur.Left == nil && cur.Right == nil {
-				return res
+	for leftPtr != nil || leftStack.Len() > 0 {
+		if leftPtr != nil {
+			if rightPtr == nil {
+				return false
 			}
-			if cur.Left != nil {
-				queue.PushBack(cur.Left)
+			leftStack.PushBack(leftPtr)
+			rightStack.PushBack(rightPtr)
+			leftPtr = leftPtr.Left
+			rightPtr = rightPtr.Right
+		} else {
+			if rightPtr != nil {
+				return false
 			}
-			if cur.Right != nil {
-				queue.PushBack(cur.Right)
+			leftPtr = leftStack.Remove(leftStack.Back()).(*TreeNode)
+			rightPtr = rightStack.Remove(rightStack.Back()).(*TreeNode)
+			if leftPtr.Val != rightPtr.Val {
+				return false
 			}
+			leftPtr = leftPtr.Right
+			rightPtr = rightPtr.Left
 		}
 	}
-	return res // 实际不会走到这一步
+	return true
 }
 
 func main() {
+	n5 := &TreeNode{
+		Val:   5,
+		Left:  nil,
+		Right: nil,
+	}
+	n4 := &TreeNode{
+		Val:   5,
+		Left:  nil,
+		Right: nil,
+	}
 	n3 := &TreeNode{
 		Val:   4,
 		Left:  nil,
@@ -52,18 +70,18 @@ func main() {
 	}
 	n2 := &TreeNode{
 		Val:   3,
-		Left:  nil,
-		Right: n3,
+		Left:  n5,
+		Right: nil,
 	}
 	n1 := &TreeNode{
-		Val:   2,
-		Left:  nil,
-		Right: n2,
+		Val:   3,
+		Left:  n3,
+		Right: n4,
 	}
 	root := &TreeNode{
-		Val:   1,
-		Left:  nil,
-		Right: n1,
+		Val:   2,
+		Left:  n1,
+		Right: n2,
 	}
-	fmt.Println(minDepth2(root))
+	fmt.Println(isSymmetric(root))
 }
