@@ -1,7 +1,6 @@
 package main
 
 import (
-	"container/list"
 	"fmt"
 )
 
@@ -12,76 +11,48 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func isSymmetric(root *TreeNode) bool {
-	if root == nil { // 空树特殊处理
-		return true
+func sumOfLeftLeaves(root *TreeNode) int {
+	if root == nil {
+		return 0
 	}
-	if root.Left == nil && root.Right != nil {
-		return false
+	sum := sumOfLeftLeaves(root.Right)
+	if root.Left != nil && root.Left.Left == nil && root.Left.Right == nil {
+		sum += root.Left.Val
+		return sum
 	}
-	if root.Left != nil && root.Right == nil {
-		return false
-	}
-
-	leftStack := list.New()
-	rightStack := list.New()
-	leftPtr, rightPtr := root.Left, root.Right
-
-	for leftPtr != nil || leftStack.Len() > 0 {
-		if leftPtr != nil {
-			if rightPtr == nil {
-				return false
-			}
-			leftStack.PushBack(leftPtr)
-			rightStack.PushBack(rightPtr)
-			leftPtr = leftPtr.Left
-			rightPtr = rightPtr.Right
-		} else {
-			if rightPtr != nil {
-				return false
-			}
-			leftPtr = leftStack.Remove(leftStack.Back()).(*TreeNode)
-			rightPtr = rightStack.Remove(rightStack.Back()).(*TreeNode)
-			if leftPtr.Val != rightPtr.Val {
-				return false
-			}
-			leftPtr = leftPtr.Right
-			rightPtr = rightPtr.Left
-		}
-	}
-	return true
+	return sum + sumOfLeftLeaves(root.Left)
 }
 
 func main() {
-	n5 := &TreeNode{
-		Val:   5,
-		Left:  nil,
-		Right: nil,
-	}
+	//n5 := &TreeNode{
+	//	Val:   5,
+	//	Left:  nil,
+	//	Right: nil,
+	//}
 	n4 := &TreeNode{
-		Val:   5,
+		Val:   7,
 		Left:  nil,
 		Right: nil,
 	}
 	n3 := &TreeNode{
-		Val:   4,
+		Val:   15,
 		Left:  nil,
 		Right: nil,
 	}
 	n2 := &TreeNode{
-		Val:   3,
-		Left:  n5,
-		Right: nil,
-	}
-	n1 := &TreeNode{
-		Val:   3,
+		Val:   20,
 		Left:  n3,
 		Right: n4,
+	}
+	n1 := &TreeNode{
+		Val:   9,
+		Left:  nil,
+		Right: nil,
 	}
 	root := &TreeNode{
 		Val:   2,
 		Left:  n1,
 		Right: n2,
 	}
-	fmt.Println(isSymmetric(root))
+	fmt.Println(sumOfLeftLeaves(root))
 }
