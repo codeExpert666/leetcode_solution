@@ -1,7 +1,6 @@
 package main
 
 import (
-	"container/list"
 	"fmt"
 )
 
@@ -12,39 +11,28 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func pathSum1(root *TreeNode, targetSum int) [][]int {
-	var sum int
-	var path []int
-	var res [][]int
-
-	stack := list.New()
-	cur := root
-	var pre *TreeNode
-
-	for cur != nil || stack.Len() > 0 {
-		if cur != nil {
-			sum += cur.Val               // 更新此时的总和
-			path = append(path, cur.Val) // 更新当前路径
-			stack.PushBack(cur)
-			cur = cur.Left
-		} else {
-			cur = stack.Back().Value.(*TreeNode)
-			if cur.Right == nil || cur.Right == pre {
-				if cur.Left == nil && cur.Right == nil && sum == targetSum {
-					// 遍历到叶子结点,且此时和等于目标值,也即找到路径
-					res = append(res, path)
-				}
-				stack.Remove(stack.Back())
-				sum -= cur.Val            // 更新此时的总和
-				path = path[:len(path)-1] // 更新此时路径
-				pre = cur
-				cur = nil
-			} else {
-				cur = cur.Right
-			}
-		}
+func mergeTrees1(root1 *TreeNode, root2 *TreeNode) *TreeNode {
+	if root1 == nil && root2 == nil {
+		return nil
 	}
-	return res
+	// 新建结点，不利用已有结点
+	root := &TreeNode{}
+	if root1 == nil {
+		// 第一棵树空，第二棵树不空
+		root.Val = root2.Val
+		root.Left = mergeTrees1(nil, root2.Left)
+		root.Right = mergeTrees1(nil, root2.Right)
+	} else if root2 == nil {
+		// 第一棵树不空，第二棵树空
+		root.Val = root1.Val
+		root.Left = mergeTrees1(root1.Left, nil)
+		root.Right = mergeTrees1(root1.Right, nil)
+	} else {
+		root.Val = root1.Val + root2.Val
+		root.Left = mergeTrees1(root1.Left, root2.Left)
+		root.Left = mergeTrees1(root1.Right, root2.Right)
+	}
+	return root
 }
 
 func main() {
@@ -58,25 +46,25 @@ func main() {
 	//	Left:  nil,
 	//	Right: nil,
 	//}
-	//n3 := &TreeNode{
-	//	Val:   15,
-	//	Left:  nil,
-	//	Right: nil,
-	//}
 	n2 := &TreeNode{
-		Val:   3,
+		Val:   2,
 		Left:  nil,
 		Right: nil,
+	}
+	root2 := &TreeNode{
+		Val:   1,
+		Left:  nil,
+		Right: n2,
 	}
 	n1 := &TreeNode{
 		Val:   2,
 		Left:  nil,
 		Right: nil,
 	}
-	root := &TreeNode{
+	root1 := &TreeNode{
 		Val:   1,
 		Left:  n1,
-		Right: n2,
+		Right: nil,
 	}
-	fmt.Println(pathSum1(root, 3))
+	fmt.Println(mergeTrees1(root1, root2))
 }
