@@ -21,6 +21,7 @@ func trimBST(root *TreeNode, low int, high int) *TreeNode {
 /**
  * 迭代法，稍微复杂些，主要分为三步：1、寻找结点值在给定区间的根节点
  * 2、修剪该根节点的左子树 3、修剪该根节点的右子树
+ * 仔细体会这段代码，很精妙
  */
 func trimBST1(root *TreeNode, low int, high int) *TreeNode {
 	if root == nil {
