@@ -11,64 +11,35 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-const INT_MAX = int(^uint(0) >> 1)
-
-var pre *TreeNode
-
-func getMinimumDifference(root *TreeNode) int {
-	if root == nil {
-		return INT_MAX
-	}
-	// 根据中序遍历的顺序，先把左子树最小值当作全局最小值
-	min := getMinimumDifference(root.Left)
-	// 更新最小值
-	if pre != nil {
-		tmp := root.Val - pre.Val
-		if tmp < min {
-			min = tmp
+func combine(n int, k int) [][]int {
+	// 终止条件
+	if k == 1 {
+		var res [][]int
+		for i := 1; i <= n; i++ {
+			res = append(res, []int{i})
 		}
+		return res
 	}
-	pre = root
-	// 右子树最小值
-	rightMin := getMinimumDifference(root.Right)
-	// 更新最小值
-	if rightMin < min {
-		return rightMin
-	} else {
-		return min
+	if n == k {
+		var tmp []int
+		for i := 1; i <= k; i++ {
+			tmp = append(tmp, i)
+		}
+		return [][]int{tmp}
 	}
+	// 从前n-1个数中找k个数
+	res := combine(n-1, k)
+	// 从前n-1个数中找k-1个数
+	tmp := combine(n-1, k-1)
+	// 与最后一个数拼接
+	for i := 0; i < len(tmp); i++ {
+		tmp[i] = append(tmp[i], n)
+	}
+	// 整合结果
+	res = append(res, tmp...)
+	return res
 }
 
 func main() {
-	//n5 := &TreeNode{
-	//	Val:   5,
-	//	Left:  nil,
-	//	Right: nil,
-	//}
-	n4 := &TreeNode{
-		Val:   49,
-		Left:  nil,
-		Right: nil,
-	}
-	n3 := &TreeNode{
-		Val:   12,
-		Left:  nil,
-		Right: nil,
-	}
-	n2 := &TreeNode{
-		Val:   48,
-		Left:  n3,
-		Right: n4,
-	}
-	n1 := &TreeNode{
-		Val:   0,
-		Left:  nil,
-		Right: nil,
-	}
-	root := &TreeNode{
-		Val:   1,
-		Left:  n1,
-		Right: n2,
-	}
-	fmt.Println(getMinimumDifference(root))
+	fmt.Println(combine(2, 1))
 }
