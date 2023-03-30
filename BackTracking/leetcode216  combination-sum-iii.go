@@ -1,16 +1,8 @@
-package main
+package BackTracking
 
-import (
-	"fmt"
-)
-
-// TreeNode Definition for a binary tree node.
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
+/**
+ * 回溯
+ */
 var (
 	res1  [][]int
 	path1 []int
@@ -31,7 +23,12 @@ func backtracking(k int, n int, startNum int) {
 		res1 = append(res1, tmp)
 		return
 	}
-	for i := startNum; i <= 9-(k-len(path1))+1; i++ {
+	if len(path1) >= k || sum >= n {
+		// 已经出错，及时停止，进行回溯
+		return
+	}
+	// 只有当len(path1) < k && sum < n 时才进行分支选择
+	for i := startNum; i <= 9-(k-len(path1))+1; i++ { // 剪枝
 		// 添加
 		sum += i
 		path1 = append(path1, i)
@@ -40,8 +37,4 @@ func backtracking(k int, n int, startNum int) {
 		sum -= i
 		path1 = path1[:len(path1)-1]
 	}
-}
-
-func main() {
-	fmt.Println(combinationSum3(3, 6))
 }
