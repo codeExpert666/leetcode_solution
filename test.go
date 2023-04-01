@@ -4,44 +4,38 @@ import (
 	"fmt"
 )
 
-// TreeNode Definition for a binary tree node.
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
-
 var (
-	res1  [][]int
-	path1 []int
-	sum   int
+	res7  [][]int
+	path7 []int
 )
 
-func combinationSum3(k int, n int) [][]int {
-	path1, res1 = make([]int, 0, k), make([][]int, 0)
-	backtracking(k, n, 1)
-	return res1
+func subsets(nums []int) [][]int {
+	res7, path7 = make([][]int, 0), make([]int, 0, len(nums))
+	backtracking6(nums, 0)
+	return res7
 }
 
-func backtracking(k int, n int, startNum int) {
+func backtracking6(nums []int, index int) {
 	// 终止条件
-	if len(path1) == k && sum == n {
-		tmp := make([]int, 0, k)
-		tmp = append(tmp, path1...)
-		res1 = append(res1, tmp)
+	if index == len(nums) {
+		tmp := make([]int, len(path7))
+		copy(tmp, path7)
+		res7 = append(res7, tmp)
 		return
 	}
-	for i := startNum; i <= 9-(k-len(path1))+1; i++ {
-		// 添加
-		sum += i
-		path1 = append(path1, i)
-		backtracking(k, n, i+1)
-		// 回溯
-		sum -= i
-		path1 = path1[:len(path1)-1]
+	for i := 0; i < 2; i++ { // 每个位置的元素都有两种可能，在或不在子集中
+		if i == 0 {
+			// 在子集中
+			path7 = append(path7, nums[index])
+			backtracking6(nums, index+1)
+			path7 = path7[:len(path7)-1]
+		} else {
+			// 不在子集中
+			backtracking6(nums, index+1)
+		}
 	}
 }
 
 func main() {
-	fmt.Println(combinationSum3(3, 6))
+	fmt.Println(subsets([]int{1}))
 }
