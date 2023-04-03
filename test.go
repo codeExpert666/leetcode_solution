@@ -5,37 +5,34 @@ import (
 )
 
 var (
-	res7  [][]int
-	path7 []int
+	res9  [][]int
+	path9 []int
 )
 
-func subsets(nums []int) [][]int {
-	res7, path7 = make([][]int, 0), make([]int, 0, len(nums))
-	backtracking6(nums, 0)
-	return res7
+func findSubsequences(nums []int) [][]int {
+	res9, path9 = make([][]int, 0), make([]int, 0, len(nums))
+	backtracking8(nums, 0, -150)
+	return res9
 }
 
-func backtracking6(nums []int, index int) {
-	// 终止条件
-	if index == len(nums) {
-		tmp := make([]int, len(path7))
-		copy(tmp, path7)
-		res7 = append(res7, tmp)
+func backtracking8(nums []int, startIndex int, preValue int) {
+	// 终止条件（存在一种情况，原数组连续递增，那么终止条件就应是遍历到数组尾部）
+	if startIndex == len(nums) || nums[startIndex] < preValue {
+		if len(path9) >= 2 { // 注意题目条件，子序列长度至少为2
+			tmp := make([]int, len(path9))
+			copy(tmp, path9)
+			res9 = append(res9, tmp)
+		}
 		return
 	}
-	for i := 0; i < 2; i++ { // 每个位置的元素都有两种可能，在或不在子集中
-		if i == 0 {
-			// 在子集中
-			path7 = append(path7, nums[index])
-			backtracking6(nums, index+1)
-			path7 = path7[:len(path7)-1]
-		} else {
-			// 不在子集中
-			backtracking6(nums, index+1)
-		}
+
+	for i := startIndex; i < len(nums); i++ {
+		path9 = append(path9, nums[i])
+		backtracking8(nums, i+1, nums[i])
+		path9 = path9[:len(path9)-1]
 	}
 }
 
 func main() {
-	fmt.Println(subsets([]int{1}))
+	fmt.Println(findSubsequences([]int{4, 4, 3}))
 }
