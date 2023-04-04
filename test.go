@@ -2,37 +2,43 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 var (
-	res9  [][]int
-	path9 []int
+	res11  [][]int
+	path11 []int
 )
 
-func findSubsequences(nums []int) [][]int {
-	res9, path9 = make([][]int, 0), make([]int, 0, len(nums))
-	backtracking8(nums, 0, -150)
-	return res9
+func permuteUnique1(nums []int) [][]int {
+	sort.Ints(nums) // 先排序
+	res11, path11 = make([][]int, 0), make([]int, 0, len(nums))
+	bp(nums, make([]bool, len(nums)))
+	return res11
 }
 
-func backtracking8(nums []int, startIndex int, preValue int) {
-	// 终止条件（存在一种情况，原数组连续递增，那么终止条件就应是遍历到数组尾部）
-	if startIndex == len(nums) || nums[startIndex] < preValue {
-		if len(path9) >= 2 { // 注意题目条件，子序列长度至少为2
-			tmp := make([]int, len(path9))
-			copy(tmp, path9)
-			res9 = append(res9, tmp)
-		}
+func bp(nums []int, used []bool) {
+	if len(path11) == len(nums) {
+		tmp := make([]int, len(path11))
+		copy(tmp, path11)
+		res11 = append(res11, tmp)
 		return
 	}
 
-	for i := startIndex; i < len(nums); i++ {
-		path9 = append(path9, nums[i])
-		backtracking8(nums, i+1, nums[i])
-		path9 = path9[:len(path9)-1]
+	for i := 0; i < len(nums); i++ {
+		if i > 0 && nums[i] == nums[i-1] && !used[i-1] { // 注意这个去重操作
+			continue
+		}
+		if !used[i] {
+			path11 = append(path11, nums[i])
+			used[i] = true
+			bp(nums, used)
+			used[i] = false
+			path11 = path11[:len(path11)-1]
+		}
 	}
 }
 
 func main() {
-	fmt.Println(findSubsequences([]int{4, 4, 3}))
+	fmt.Println(permuteUnique1([]int{1, 1, 2}))
 }
