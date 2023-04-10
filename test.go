@@ -2,43 +2,70 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"strings"
 )
 
 var (
-	res11  [][]int
-	path11 []int
+	res12  []string
+	path12 []string
 )
 
-func permuteUnique1(nums []int) [][]int {
-	sort.Ints(nums) // 先排序
-	res11, path11 = make([][]int, 0), make([]int, 0, len(nums))
-	bp(nums, make([]bool, len(nums)))
-	return res11
+func findItinerary(tickets [][]string) []string {
+	res12, path12 = make([]string, 0, len(tickets)+1), make([]string, 0, len(tickets)+1)
+	path12 = append(path12, "JFK")
+	backtracking12(tickets, make([]bool, len(tickets)))
+	return res12
 }
 
-func bp(nums []int, used []bool) {
-	if len(path11) == len(nums) {
-		tmp := make([]int, len(path11))
-		copy(tmp, path11)
-		res11 = append(res11, tmp)
+func backtracking12(tickets [][]string, used []bool) {
+	// 终止条件
+	if len(path12) == len(tickets)+1 {
+		if len(res12) == 0 {
+			// 第一次找到行程
+			res12 = append(res12, path12...)
+		} else {
+			// 第二次及以后找到行程，需要与之前的行程做比较
+			if comparePath(path12, res12) {
+				res12 = res12[:0]
+				res12 = append(res12, path12...)
+			}
+		}
 		return
 	}
 
-	for i := 0; i < len(nums); i++ {
-		if i > 0 && nums[i] == nums[i-1] && !used[i-1] { // 注意这个去重操作
+	for i := 0; i < len(tickets); i++ {
+		if used[i] || tickets[i][0] != path12[len(path12)-1] {
 			continue
 		}
-		if !used[i] {
-			path11 = append(path11, nums[i])
-			used[i] = true
-			bp(nums, used)
-			used[i] = false
-			path11 = path11[:len(path11)-1]
-		}
+		path12 = append(path12, tickets[i][1])
+		used[i] = true
+		backtracking12(tickets, used)
+		used[i] = false
+		path12 = path12[:len(path12)-1]
 	}
 }
 
+// 判断path1是否比path2更好
+func comparePath(path1, path2 []string) bool {
+	var r bool
+	for i := 0; i < len(path1); i++ {
+		v := strings.Compare(path1[i], path2[i])
+		if v == -1 {
+			r = true
+			break
+		}
+		if v == 1 {
+			r = false
+			break
+		}
+	}
+	return r
+}
+
 func main() {
-	fmt.Println(permuteUnique1([]int{1, 1, 2}))
+	fmt.Println(findItinerary([][]string{
+		[]string{"JFK", "KUL"},
+		[]string{"JFK", "NRT"},
+		[]string{"NRT", "JFK"},
+	}))
 }
