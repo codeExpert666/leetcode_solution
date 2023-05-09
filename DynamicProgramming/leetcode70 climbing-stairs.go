@@ -19,3 +19,22 @@ func climbStairs(n int) int {
 	}
 	return dp[1]
 }
+
+/**
+ * 还可以转化为完全背包问题（dp）
+ * 用无限制的重量为1和2的物品装满承重为n的背包
+ */
+func climbStairs1(n int) int {
+	dp := make([]int, n+1)
+	dp[0] = 1
+
+	for j := 0; j <= n; j++ {
+		for i := 1; i <= 2; i++ {
+			if j >= i {
+				dp[j] += dp[j-i]
+			}
+		}
+	}
+
+	return dp[n]
+}
