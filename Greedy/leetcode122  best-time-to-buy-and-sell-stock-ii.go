@@ -15,3 +15,22 @@ func maxProfit(prices []int) int {
 	}
 	return profit
 }
+
+/**
+ * 动态规划dp
+ */
+func maxProfit2(prices []int) int {
+	// 初始化
+	dp := [2]int{-prices[0], 0}
+
+	for i := 1; i < len(prices); i++ {
+		// 递推公式
+		tmp := dp[0]
+		dp[0] = max(dp[0], dp[1]-prices[i])
+		//dp[0] = max(dp[0], -prices[i])  这是只能买卖一次股票的写法
+		dp[1] = max(dp[1], tmp+prices[i])
+	}
+
+	// 最后一天一定是不持有股票收益最大
+	return dp[1]
+}
