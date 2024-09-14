@@ -1,8 +1,4 @@
-package main
-
-import (
-	"fmt"
-)
+package HashTable
 
 // 利用hash表记录一个数组的元素出现情况，进而用于判断另一数组元素在前一数组中的出现情况
 func intersection(nums1 []int, nums2 []int) []int {
@@ -16,20 +12,16 @@ func intersection(nums1 []int, nums2 []int) []int {
 func restrictIntersection(minNums []int, maxNums []int) []int {
 	res := make([]int, 0, len(minNums))
 	// 记录较小元素出现情况
-	m := make(map[int]int)
+	m := make(map[int]struct{})
 	for _, n := range minNums {
-		m[n]++
+		m[n] = struct{}{}
 	}
 	// 判断较大数组的元素出现情况
 	for _, n := range maxNums {
-		if count, ok := m[n]; ok && count > 0 { // 存在且还有剩余出现次数
+		if _, ok := m[n]; ok {
 			res = append(res, n)
-			m[n]--
+			delete(m, n) // 出现过就删除，防止重复记录
 		}
 	}
 	return res
-}
-
-func main() {
-	fmt.Println(intersection([]int{1, 2, 2, 1}, []int{2, 2}))
 }
