@@ -101,7 +101,7 @@ func findItinerary1(tickets [][]string) []string {
 		}
 		targets[ticket[0]] = append(targets[ticket[0]], &pair{target: ticket[1], visited: false})
 	}
-	for k, _ := range targets {
+	for k := range targets {
 		sort.Sort(targets[k])
 	}
 	result = append(result, "JFK")
