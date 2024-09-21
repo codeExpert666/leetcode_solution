@@ -10,7 +10,7 @@ func pathSum(root *TreeNode, targetSum int) [][]int {
 		return [][]int{}
 	}
 	if root.Left == nil && root.Right == nil && root.Val == targetSum {
-		return [][]int{[]int{root.Val}}
+		return [][]int{{root.Val}}
 	}
 	left := pathSum(root.Left, targetSum-root.Val)
 	right := pathSum(root.Right, targetSum-root.Val)

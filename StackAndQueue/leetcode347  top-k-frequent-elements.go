@@ -1,9 +1,6 @@
-package main
+package StackAndQueue
 
-import (
-	"container/heap"
-	"fmt"
-)
+import "container/heap"
 
 // Item 表示优先队列中的一个元素
 type Item struct {
@@ -75,6 +72,9 @@ func topKFrequent(nums []int, k int) []int {
 	return res
 }
 
-func main() {
-	fmt.Println(topKFrequent([]int{1, 1, 1, 2, 2, 3}, 2))
-}
+// 还有一种更优的方法，即利用基于小根堆的优先队列，且维持堆的大小为k
+// 遍历将数字映射到频数的hashmap，将数据不断添加到小根堆中，当堆的大小大于k时，
+// 弹出堆顶元素，这样，堆中最终留下的便是频数前k大的元素
+// 该方法的实践复杂度为nlogk，空间复杂度为大小为k的堆，均小于上一种方法
+
+// 总结：前K大，小根堆；前K小，大根堆
