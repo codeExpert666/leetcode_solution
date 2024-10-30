@@ -11,7 +11,7 @@ type PHeight struct {
 	height int
 }
 
-func sortPeople(names []string, heights []int) []string {
+func SortPeople(names []string, heights []int) []string {
 	// 配对
 	pairs := make([]*PHeight, 0, len(names))
 	for i, n := range names {

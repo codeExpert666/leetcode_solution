@@ -3,7 +3,7 @@ package DailyCode
 /**
  * 暴力枚举法，以较长的子数组为为基准，枚举较短子数组
  */
-func maxSumTwoNoOverlap(nums []int, firstLen int, secondLen int) int {
+func MaxSumTwoNoOverlap(nums []int, firstLen int, secondLen int) int {
 	var res, sum int // 记录最大和与当前和
 	for i := 0; i <= len(nums)-firstLen; i++ {
 		// 计算第一个子数组的和

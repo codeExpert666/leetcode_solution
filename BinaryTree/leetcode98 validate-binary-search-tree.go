@@ -5,12 +5,12 @@ import "container/list"
 /**
  * 递归法一，一棵树是二叉搜索树等价于其左右子树都是二叉搜索树，并且左子树的最右结点小于根节点，右子树的的最左结点大于根节点
  */
-func isValidBST(root *TreeNode) bool {
+func IsValidBST(root *TreeNode) bool {
 	if root == nil {
 		// 空树是二叉搜索树
 		return true
 	}
-	if !isValidBST(root.Left) || !isValidBST(root.Right) {
+	if !IsValidBST(root.Left) || !IsValidBST(root.Right) {
 		// 当左右子树有非搜索二叉树时，整个二叉树也是非搜索二叉树
 		return false
 	}
@@ -43,18 +43,18 @@ func isValidBST(root *TreeNode) bool {
  * 以后再遇到需要利用几个递归思路的题目时，可以之间套用递归模板，在此基础上进行修改，这样的代码会比较简洁
  */
 var pre *TreeNode // 记录前一个结点，因为要不断与前一结点进行比较
-func isValidBST1(root *TreeNode) bool {
+func IsValidBST1(root *TreeNode) bool {
 	if root == nil {
 		// 空树是二叉搜索树
 		return true
 	}
-	left := isValidBST1(root.Left)
+	left := IsValidBST1(root.Left)
 	if pre != nil && root.Val <= pre.Val {
 		// 当前结点与前一结点比较
 		return false
 	}
 	pre = root // 更新前一结点
-	right := isValidBST1(root.Right)
+	right := IsValidBST1(root.Right)
 
 	return left && right // 左右子树都是二叉搜索树
 }
@@ -62,7 +62,7 @@ func isValidBST1(root *TreeNode) bool {
 /**
  * 迭代法，也是中序遍历思想，利用栈来实现
  */
-func isValidBST2(root *TreeNode) bool {
+func IsValidBST2(root *TreeNode) bool {
 	stack := list.New()
 	cur := root
 	var pre *TreeNode // // 记录前一个结点，因为要不断与前一结点进行比较
