@@ -41,7 +41,7 @@ func getMaxAreaBFS(matrix [][]int, visited [][]bool) int {
 	return res
 }
 
-func main() {
+func TestGetMaxAreaBFS() {
 	var row, col int
 	fmt.Scan(&row, &col)
 	matrix := make([][]int, row)

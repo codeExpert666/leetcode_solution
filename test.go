@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github/DailyCode"
+	"github/Array"
 )
 
 func main() {
-	ideas := []string{"coffee", "donuts", "time", "toffee"}
-	fmt.Println(DailyCode.DistinctNames(ideas))
+	fmt.Println(Array.PivotIndex([]int{1, 7, 3, 6, 5, 6}))
 }
