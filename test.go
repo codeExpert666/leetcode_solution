@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github/Array"
+	"github/DailyCode"
 )
 
 func main() {
-	fmt.Println(Array.PivotIndex([]int{1, 7, 3, 6, 5, 6}))
+	fmt.Println(DailyCode.ResultsArray([]int{2, 2, 2, 2, 2}, 4))
 }

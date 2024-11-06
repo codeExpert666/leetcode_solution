@@ -28,7 +28,7 @@ func islandPerimeter(matrix [][]int, visited [][]bool, startx, starty int) int {
 	return res
 }
 
-func main() {
+func TsetIslandPerimeter() {
 	var row, col int
 	fmt.Scan(&row, &col)
 	matrix := make([][]int, row)
