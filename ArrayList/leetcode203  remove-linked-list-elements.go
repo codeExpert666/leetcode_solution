@@ -1,10 +1,5 @@
 package ArrayList
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 // 由于该链表的实现是不带空节点的链表，故需要对头结点单独处理
 func removeElements(head *ListNode, val int) *ListNode {
 	for head != nil && head.Val == val { // 删除链表开头的所有符合条件的值

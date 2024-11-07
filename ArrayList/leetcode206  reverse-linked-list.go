@@ -1,7 +1,7 @@
 package ArrayList
 
 // 双指针遍历法
-func reverseList(head *ListNode) *ListNode {
+func ReverseList(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil { // 单独处理不包含元素和只包含一个元素的链表
 		return head
 	}
@@ -18,7 +18,7 @@ func reverseList(head *ListNode) *ListNode {
 }
 
 // 双指针遍历精简版
-func reverseList1(head *ListNode) *ListNode {
+func ReverseList1(head *ListNode) *ListNode {
 	var pre *ListNode // 通过将pre的初始值设置为nil，实现遍历过程的统一
 	cur := head
 	for cur != nil {
@@ -32,11 +32,11 @@ func reverseList1(head *ListNode) *ListNode {
 }
 
 // 递归
-func reverseList2(head *ListNode) *ListNode {
+func ReverseList2(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
-	subList := reverseList2(head.Next) // 反转后续子串
+	subList := ReverseList2(head.Next) // 反转后续子串
 	head.Next.Next = head              // 将原头结点添加到子串末尾
 	head.Next = nil                    // 原头结点变成末尾结点，其Next应为空
 	return subList
