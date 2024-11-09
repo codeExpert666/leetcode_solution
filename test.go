@@ -2,13 +2,12 @@ package main
 
 import (
 	"fmt"
-	"github/ArrayList"
+	// "github/ArrayList"
 )
 
 func main() {
-	n4 := ArrayList.ListNode{Val: 1, Next: nil}
-	n3 := ArrayList.ListNode{Val: 2, Next: &n4}
-	n2 := ArrayList.ListNode{Val: 2, Next: &n3}
-	n1 := ArrayList.ListNode{Val: 1, Next: &n2}
-	fmt.Println(ArrayList.IsPalindrome(&n1))
+	a1 := [][2]int{}
+	a2 := [][2]int{{1, 2}, {3, 4}}
+	a1 = append(a1, a2[0])
+	fmt.Println(a1)
 }

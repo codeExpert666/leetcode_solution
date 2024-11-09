@@ -29,7 +29,7 @@ func (s *UnionFindSet) IsConnected(n1, n2 int) bool {
 	return s.find(n1) == s.find(n2)
 }
 
-func main() {
+func TestUFS() {
 	var nodeNum int
 	fmt.Scan(&nodeNum)
 	var s UnionFindSet
