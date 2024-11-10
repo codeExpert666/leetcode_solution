@@ -35,7 +35,7 @@ func getMinDis(adjMatrix [][]int) int {
 	return res
 }
 
-func main() {
+func TestPrim() {
 	var nodeNum, edgeNum int
 	fmt.Scan(&nodeNum, &edgeNum)
 	// 构建邻接矩阵（无向图）
