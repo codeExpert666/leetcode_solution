@@ -11,7 +11,7 @@ type Edge struct {
 }
 
 // Kruskal最小生成树：核心是边，向树中逐个添加边
-func main() {
+func TestKruskal() {
 	var nodeNum, edgeNum int
 	fmt.Scan(&nodeNum, &edgeNum)
 	edges := make([]Edge, edgeNum) // 存储所有边
