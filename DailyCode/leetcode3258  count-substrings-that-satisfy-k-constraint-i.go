@@ -1,7 +1,7 @@
 package DailyCode
 
 // 滑动窗口（每次统计以左边界为首的子串）
-func CountKConstraintSubstrings(s string, k int) int {
+func CountKConstraintSubstringsSingle(s string, k int) int {
 	var res int
 	var count0, count1 int // 统计窗口中0与1的个数
 	var left, right int    // 窗口左右边界

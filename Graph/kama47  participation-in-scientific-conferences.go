@@ -4,15 +4,8 @@ import (
 	"fmt"
 )
 
-const MaxInt int = 1<<31 - 1
-
-type PartEdge struct { // 邻接表中的元素类型
-	ToNode int
-	Weight int
-}
-
 // 单源最短路径Dijkstra算法
-func main() {
+func TestDijkstra() {
 	var nodeNum, edgeNum int
 	fmt.Scan(&nodeNum, &edgeNum)
 	// 构建图（邻接表）
