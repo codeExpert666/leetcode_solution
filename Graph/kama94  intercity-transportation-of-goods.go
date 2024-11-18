@@ -2,15 +2,8 @@ package main
 
 import "fmt"
 
-const MaxInt int = 1<<31 - 1
-
-type PartEdge struct { // 邻接表中的元素类型
-	ToNode int
-	Weight int
-}
-
 // Bellman_ford算法，能够处理带负权制的单源最短路径
-func main() {
+func TestBellmanFord() {
 	var nodeNum, edgeNum int
 	fmt.Scan(&nodeNum, &edgeNum)
 	// 存储图中所有边
