@@ -2,10 +2,10 @@ package main
 
 import "fmt"
 
-// 单源有限最短路径
+// TestRestrictedSingleSourceShortestPath 单源有限最短路径
 // bellman_ford可以通过在每轮松弛时对minDist数组进行备份实现（主要是为了应对负权回路的情况）
 // SPFA（队列优化版bellman）可以通过类似于层序遍历分层输出节点的方式实现（保证每次往处理向前走一步的所有节点，无需备份minDist数组）
-func main() {
+func TestRestrictedSingleSourceShortestPath() {
 	var nodeNum, edgeNum int
 	_, _ = fmt.Scan(&nodeNum, &edgeNum)
 	// 构建邻接表

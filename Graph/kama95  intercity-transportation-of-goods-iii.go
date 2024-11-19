@@ -4,7 +4,7 @@ import "fmt"
 
 const MaxInt int = 1<<31 - 1
 
-// 向bellman_ford算法中添加负权回路的判断
+// TestNegativeWeightingCircuit 向bellman_ford算法中添加负权回路的判断
 // 正常的bellman_ford算法在经过nodeNum-1次循环后距离数组一定不再更新
 // 若存在负权回路，距离可以无限小，故会一直更新
 func TestNegativeWeightingCircuit() {

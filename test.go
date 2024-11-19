@@ -6,7 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(DailyCode.ImageSmoother([][]int{
-		{1, 1, 1}, {1, 0, 1}, {1, 1, 1},
-	}))
+	fmt.Println(DailyCode.ShortestDistanceAfterQueries(6, [][]int{{1, 3}, {3, 5}}))
 }
