@@ -4,8 +4,8 @@ import (
 	"fmt"
 )
 
-// Floyd多源最短路径，动态规划思想
-func main() {
+// TestFloyd Floyd多源最短路径，动态规划思想
+func TestFloyd() {
 	var nodeNum, edgeNum int
 	_, _ = fmt.Scan(&nodeNum, &edgeNum)
 	// 构建图结构（邻接矩阵充当dp数组）
