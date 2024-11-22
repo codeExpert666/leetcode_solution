@@ -74,7 +74,7 @@ func AStar(startx, starty, endx, endy int) int {
 	return -1 // 终点无法到达，在本题中不会出现
 }
 
-func main() {
+func TestAstar() {
 	var queryNum int
 	_, _ = fmt.Scan(&queryNum)
 	answer := make([]int, queryNum)

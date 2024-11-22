@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(DailyCode.ShortestDistanceAfterQueries(6, [][]int{{1, 3}, {3, 5}}))
+	fmt.Println(DailyCode.NonSpecialCount(4, 16))
 }
