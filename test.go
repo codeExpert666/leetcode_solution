@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github/DailyCode"
+	"github/Array"
 )
 
 func main() {
-	fmt.Println(DailyCode.NonSpecialCount(4, 16))
+	a := []int{4, 2, 0, 2, 3, 2, 0}
+	Array.NextPermutation([]int{4, 2, 0, 2, 3, 2, 0})
+	fmt.Println(a)
 }
