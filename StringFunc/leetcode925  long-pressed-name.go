@@ -1,4 +1,4 @@
-package String
+package StringFunc
 
 // 同时遍历两个字符串，保证同等位置处输入的字符数大于名字中的字符
 func IsLongPressedName(name string, typed string) bool {

@@ -1,4 +1,4 @@
-package String
+package StringFunc
 
 func reverseStr(s string, k int) string {
 	res := []byte(s)

@@ -1,4 +1,4 @@
-package String
+package StringFunc
 
 import "strings"
 

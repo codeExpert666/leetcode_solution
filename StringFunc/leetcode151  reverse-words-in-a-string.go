@@ -1,4 +1,4 @@
-package String
+package StringFunc
 
 // 先整体反转，然后遍历，边处理空格，边识别并反转每个单词
 func reverseWords(s string) string {

@@ -1,4 +1,4 @@
-package String
+package StringFunc
 
 // 获取KMP算法中待匹配串的Next数组
 func getNext(s string) []int {

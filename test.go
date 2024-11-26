@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github/Array"
+	"github/StringFunc"
 )
 
 func main() {
-	a := []int{4, 2, 0, 2, 3, 2, 0}
-	Array.NextPermutation([]int{4, 2, 0, 2, 3, 2, 0})
-	fmt.Println(a)
+	fmt.Println(StringFunc.NumSplits("ababbbbbbb"))
 }

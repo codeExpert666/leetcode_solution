@@ -1,4 +1,4 @@
-package String
+package StringFunc
 
 // 这里将map改为[26]int能减少时间复杂度
 func CommonChars(words []string) []string {

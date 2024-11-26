@@ -1,4 +1,4 @@
-package String
+package StringFunc
 
 func IsIsomorphic(s string, t string) bool {
 	// m1是字符串s到字符串t的映射；m2是字符串t到字符串s的映射
