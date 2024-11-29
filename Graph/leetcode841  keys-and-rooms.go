@@ -24,6 +24,6 @@ func CanVisitAllRooms(rooms [][]int) bool {
 	return count == len(rooms) // 所有节点是否都被访问
 }
 
-func main() {
+func TestCanVisitAllRooms() {
 	fmt.Println(CanVisitAllRooms([][]int{{1, 3}, {3, 0, 1}, {2}, {0}}))
 }

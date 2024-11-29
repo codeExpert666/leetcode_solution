@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github/StringFunc"
+	"github/DailyCode"
 )
 
 func main() {
-	fmt.Println(StringFunc.NumSplits("ababbbbbbb"))
+	fmt.Println(DailyCode.NumberOfAlternatingGroups2([]int{0, 1, 1}, 3))
 }
