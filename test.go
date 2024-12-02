@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github/DailyCode"
+	"github/Greedy"
 )
 
 func main() {
-	fmt.Println(DailyCode.NumberOfAlternatingGroups2([]int{0, 1, 1}, 3))
+	fmt.Println(Greedy.CanPartitionKSubsets([]int{4, 5, 5, 6}, 2))
 }
