@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github/Greedy"
+	"github/DynamicProgramming"
 )
 
 func main() {
-	fmt.Println(Greedy.CanPartitionKSubsets([]int{4, 5, 5, 6}, 2))
+	fmt.Println(DynamicProgramming.CountDigitOne1(20))
 }
