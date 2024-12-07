@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github/DynamicProgramming"
+	"github/StringFunc"
 )
 
 func main() {
-	fmt.Println(DynamicProgramming.CountDigitOne1(20))
+	fmt.Println(StringFunc.GetFolderNames([]string{"kaido", "kaido(1)", "kaido", "kaido(1)", "kaido(2)"}))
 }
