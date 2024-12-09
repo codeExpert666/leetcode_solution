@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github/StringFunc"
+	"github/Simulation"
 )
 
 func main() {
-	fmt.Println(StringFunc.GetFolderNames([]string{"kaido", "kaido(1)", "kaido", "kaido(1)", "kaido(2)"}))
+	fmt.Println(Simulation.CountDays(5, [][]int{{2, 4}, {1, 3}}))
 }
