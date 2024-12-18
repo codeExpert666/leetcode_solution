@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github/Simulation"
+	"github/StringFunc"
 )
 
 func main() {
-	fmt.Println(Simulation.CountDays(5, [][]int{{2, 4}, {1, 3}}))
+	fmt.Println(StringFunc.MinValidStrings([]string{"abc", "aaaaa", "bcdef"}, "aabcdabc"))
 }
