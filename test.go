@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github/StringFunc"
+	"github/Greedy"
 )
 
 func main() {
-	fmt.Println(StringFunc.MinValidStrings([]string{"abc", "aaaaa", "bcdef"}, "aabcdabc"))
+	fmt.Println(Greedy.EatenApples([]int{3, 0, 0, 0, 0, 2}, []int{3, 0, 0, 0, 0, 2}))
 }
