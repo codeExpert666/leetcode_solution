@@ -6,7 +6,7 @@ type TripleInOne struct {
 	top   []int // 每个栈的栈顶指针
 }
 
-func Constructor(stackSize int) TripleInOne {
+func ConstructorTIO(stackSize int) TripleInOne {
 	return TripleInOne{
 		stack: make([]int, stackSize*3),
 		size:  stackSize,
