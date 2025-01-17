@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	weeklycompetition "github/WeeklyCompetition"
+	"github/Array"
 )
 
 func main() {
-	fmt.Println(weeklycompetition.MaximumCoins([][]int{{30, 49, 12}}, 28))
+	fmt.Println(Array.MinimumSubarrayLength([]int{2, 1, 8}, 10))
 }
