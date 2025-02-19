@@ -2,9 +2,16 @@ package main
 
 import (
 	"fmt"
-	"github/Array"
 )
 
 func main() {
-	fmt.Println(Array.RemoveDuplicates([]int{0, 0, 1, 1, 1, 1, 2, 3, 3}))
+	panicTest()
+	defer func() {
+		r := recover()
+		fmt.Println(r)
+	}()
+}
+
+func panicTest() {
+	panic("出错了")
 }
